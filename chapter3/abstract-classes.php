@@ -10,11 +10,16 @@
     <?php
 
         require 'Cylinder.php';
+        require 'Sphere.php';
 
-        $cylinder = new Cylinder(['radius'=> 2, 'height' =>3]);
+        $cylinder = new Cylinder(['radius' => 5, 'height' => 10]);
 
         echo $cylinder->volume();
 
+        echo '<p>';
+        $sphere = new Sphere(['radius' => 3]);
+
+        print_r($sphere->volume());
 
     ?>
 </body>

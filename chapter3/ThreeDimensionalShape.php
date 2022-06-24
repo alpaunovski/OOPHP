@@ -1,9 +1,10 @@
 <?php
 
-abstract class ThreeDimensionalShape {
+abstract class ThreeDimensionalShape 
+{
     protected array $dimensions;
 
-    public function __constuct(array $dimensions)
+    public function __construct(array $dimensions)
     {
         $this->dimensions = $dimensions;
     }
