@@ -9,17 +9,29 @@
 <body>
     <?php
 
-        use App\Connection\MySqlConnection;
-        use App\Utility\RandomUtilityClass;
+        use App\Utility\JsonFileReader;
+        use App\Exceptions\FileNotFoundException;
+        use App\Exceptions\BadJsonException;
 
-        include 'autoload.php';
+        require_once 'autoload.php';
 
+        $filename = './../files/inventory.json';
 
-        $mySqlConnection = new MySqlConnection();
-        $utility = new RandomUtilityClass();
+        $jsonFilereader = new JsonFileReader();
+
+        try {        
+            
+            $inventory = $jsonFilereader->readFileAsAssociativeArray($filename);
+            print_r($inventory);
+
+        } catch(FileNotFoundException $exception) {
+            print_r('The file ' . $filename . ' could not be found');
+        } catch (BadJsonException $exception) {
+            print_r('The File ' . $filename . ' is not properly formatted JSON');
+        }
+
+        
     ?>
 
-    <p><?php echo $mySqlConnection->databaseUrl  ?></p>
-    <p><?php echo $utility->status  ?></p>
 </body>
 </html>
