@@ -7,7 +7,7 @@ class User
     private $id;
     private $name;
     private $email;
-    private \DateTime $created_at;
+    private string $created_at;
 
     public function getId(): int
 {
@@ -35,12 +35,12 @@ public function getEmail(): string
 }
 
 
-public function getCreatedAt(): \DateTime
+public function getCreatedAt(): string
 {
     return $this->created_at;
 }
 
-public function setCreatedAt(\DateTime $created_at): void
+public function setCreatedAt(string $created_at): void
 {
     $this->created_at = $created_at;
 }
