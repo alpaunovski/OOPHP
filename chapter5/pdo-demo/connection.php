@@ -1,11 +1,12 @@
 <?php
 
-require 'User.php';
+require "App/Models/User.php";
+require_once 'vendor/autoload.php';
 
-require_once "vendor/autoload.php";
+use \App\Models\User;
 
 $host="127.0.0.1";
-$dbname="pdo-demo";
+$dbname="pdo_demo";
 $charset="utf8mb4";
 $dsn="mysql:host=$host;dbname=$dbname;charset=$charset";
 $options=[
