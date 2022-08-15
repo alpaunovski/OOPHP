@@ -61,5 +61,4 @@ class UserRepository extends ModelRepository
         return $user;
     }
 
-
 }
