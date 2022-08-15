@@ -16,7 +16,7 @@ abstract class ModelRepository
             ];
 
             try {
-                $this->pdo = new \PDO("mysql:host=127.0.0.1;dbname=pdo_demo;charset=utf8mb4", 'root', '', $options);
+                $this->pdo = new \PDO("mysql:host=127.0.0.1;dbname=pdo-demo;charset=utf8mb4", 'root', '', $options);
 
             } catch (\PDOException $PDOException) {
 

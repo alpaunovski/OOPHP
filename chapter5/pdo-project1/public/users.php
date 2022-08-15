@@ -1,4 +1,5 @@
 <?php
+use App\Models\UserRepository;
 
 require_once '../vendor/autoload.php';
 
@@ -22,6 +23,7 @@ $users = $userRepo->findAll();
 
 <?php if (count($users) < 1): ?>
 
+    <div class="a
 
 <?php endif; ?>
 
@@ -36,13 +38,17 @@ $users = $userRepo->findAll();
     </tr>
   </thead>
   <tbody>
+    <?php foreach ($users as $user): ?>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>21:30</td>
-      <td>3y 4m</td>
-      <td>Yes</td>
+      <th scope="row"><?= $user->id ?></th>
+      <td><?= $user->name ?></td>
+      <td><?= $user->getLocalTime() ?></td>
+      <td>
+        <?= $user->accountAge()->y . 'y ' . $user->accountAge()->m . 'm' ?>
+      </td>
+      <td><?= $user->isActive() ?></td>
     </tr>
+    <?php endforeach; ?>
   </tbody>
 </table>
 </div>
