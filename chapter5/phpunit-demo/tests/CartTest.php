@@ -10,14 +10,44 @@ class CartTest extends \PHPUnit\Framework\TestCase
     {
         $this->cart = new Cart();
     }
+
+    protected function  tearDown(): void
+    {
+
+        Cart::$tax;
+
+    }
+
     public function testCorrectNetPriceReturned()
     {
         require 'src/Cart.php';
         $this->cart->price = 10;
-        $netPrice = $cart->getNetPrice();
+        $netPrice = $this->cart->getNetPrice();
 
         $this->assertEquals(12, $netPrice);
 
+
+    }
+
+    public function testCorrectNetPriceIsReturned()
+    {
+        $this->cart->price = 10;
+        $netPrice = $this->cart->getNetPrice();
+
+        $this->assertEquals(12, $netPrice);
+    }
+
+    public function a_type_error_is_thrown_when_trying_to_add_a_non_int_to_the_price()
+    {
+        try {
+            $this->cart->addToPrice('fifteen');
+
+            $this->fail('A type Error should have been thrown');
+
+        } catch (TypeError $error) {
+
+            $this->assertStringStartsWith('App\Cart::addToPrice():', $error->getMessage());
+        }
 
     }
 

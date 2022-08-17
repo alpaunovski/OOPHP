@@ -13,4 +13,11 @@ class Cart
         return $this->price * self::$tax;
     }
 
+    public function addToPrice(int $amount)
+    {
+        $this->price += $amount;
+    }
+
 }
+
+
