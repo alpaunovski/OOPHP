@@ -45,4 +45,19 @@ class UserRepository extends ModelRepository
 
         return $user;
     }
+
+    public function findById(int $id): ?User
+    {
+        $stmt = $this->getPdo()->prepare('SELECT * FROM users WHERE id = :id');
+        $stmt->execute(['id' => $id]);
+
+        $userArray = $stmt->fetchAll(\PDO::FETCH_CLASS, User::class);
+
+        if(!count($userArray) === 1) {
+            return null;
+        }
+
+        return $userArray[0];
+    }
 }
+
