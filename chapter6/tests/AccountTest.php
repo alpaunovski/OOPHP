@@ -19,5 +19,34 @@ class AccountTest extends \PHPUnit\Framework\TestCase
     public function an_account_can_be_related_to_a_user()
     {
 
+        //Setup
+
+        //A user
+        $accountHolder = new \App\User();
+
+        //An account
+        $account = new \App\Account();
+
+        //Do something
+        $account->setAccountHolder($accountHolder);
+
+        //Make assertions
+        $this->assertSame($accountHolder, $account->getAccountHolder());
+
+
+    }
+
+    /** @test */
+    public function an_account_can_be_hydrated_on_creation()
+    {
+        //Setup
+        $user = new \App\User();
+        $accountNumber = 1234;
+
+        //Do something
+        $account = new \App\Account(['accountHolder' => $user, 'accountNumber' => $accountNumber]);
+
+        //Make assertions
+        $this->assertSame($user, $account->getAccountHolder());
     }
 }
