@@ -1,16 +1,30 @@
 <?php
 
+use \App\Entity\UserRepository;
 include 'includes/header.php';
 
+$userCreated = false;
+
+//Create a user in the DB using the POST data if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-    // save user
-    dd('form posted');
+    // save user to DB
+    $userRepo = new UserRepository();
+    $userCreated = $userRepo->save($_POST);
+
 }
 
 ?>
 
 <main class="container">
+
+    <?php if($userCreated): ?>
+
+        <div class="alert alert-success" role="alert">
+            The user has been created!
+        </div>
+
+    <?php else: ?>
 
     <form method="post">
 
@@ -74,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         </form>
 
     </form>
+    <?php endif; ?>
 </main>
 
 
